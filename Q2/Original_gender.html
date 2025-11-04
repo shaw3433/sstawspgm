@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+        var selectedResult="Gender";
+        var selectedName="x";
+        
+	    function upload()
+	    {
+		    var files = document.getElementById('photoupload').files;
+			var file = files[0];
+			var fileName = file.name;
+			alert(fileName);
+			var photoKey = fileName;	
+			s3.upload({
+				Key: photoKey,
+				Body: file,
+				ACL: 'public-read'
+			}, function(err, data) {
+				if (err) {
+				  return alert('There was an error uploading your photo: ', err.message);
+				}
+				alert('Successfully uploaded photo.');
+			});			    
+	    }
+		
+		function male()
+		{
+			var names = ["John","Peter","Zach"];
+			var i = Math.floor(Math.random() * 10);
+			document.getElementById("dynamic").innerHTML = "";
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" name="names" onclick="onSelect(0, this)" >'+ names[i++ %3] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" name="names" onclick="onSelect(0, this)" >'+ names[i++ %3] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" name="names" onclick="onSelect(0, this)" >'+ names[i++ %3] +'</label><br>';
+                  
+		}
+         
+    
+       
+		
+		function female()
+		{
+			var names = ["Mary","Christene","Joanne","Valerie"];
+			var i = Math.floor(Math.random() * 10);
+			document.getElementById("dynamic").innerHTML = "";
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelect(1, this)" name="names">'+ names[i++ %4] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelect(1, this)" name="names">'+ names[i++ %4] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelect(1, this)" name="names">'+ names[i++ %4] +'</label><br>';
+            document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelect(1, this)" name="names">'+ names[i++ %4] +'</label><br>';
+		}
+        
+		
+		function names()
+		{
+			var names = ["Mary","John", "Christene", "Peter", "Joanne", "AhKow", "Valerie"];
+			var i = Math.floor(Math.random() * 10);
+			
+			document.getElementById("dynamic").innerHTML = "";
+			
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio"  onclick="onSelectName(this)" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio"  onclick="onSelectName(this)" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelectName(this)" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelectName(this)" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelectName(this)" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelectName(this)" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="radio" onclick="onSelectName(this)" name="names">'+ names[i] +'</label><br>';
+		}
+
+         
+        function onSelect(x, elt)
+         {
+        
+                if (x ===0)
+                {   selectedResult = "male";   
+                }                    
+                else if (x==1)
+                {
+                    selectedResult = "female";    
+                }
+
+				selectedName = elt.parentNode.innerText;
+         
+         }
+        
+        function onSelectName(x)
+        {
+			//this method doesn't seem to serve any purpose. Leave it to you.
+			
+			console.log(x.parentNode.textContent);
+			console.log(x.parentNode.innerText);
+			selectedName = x.parentNode.innerText;
+            //document.write(x.toString);
+            
+            
+        }
+        
+        function checkMatching()
+			{
+                document.getElementById("result").innerHTML = "<h1>"+ selectedName + " is a "+ selectedResult + "</h1>";
+
+			}
+    </script>
+  </head>
+  <body>
+	
+	<input type="radio" id="male" name="gender" value="male" onclick="male();">
+	<label for="male">Male</label><br>
+	<input type="radio" id="female" name="gender" value="female" onclick="female();">
+	<label for="female">Female</label><br>
+	<hr>
+	<div id="dynamic">
+        <script> names(); </script>
+	</div>
+
+    <br>
+    <input type="submit" value="Check" onclick="checkMatching()">
+    <div id="result" />
+  </body>
+</html>
