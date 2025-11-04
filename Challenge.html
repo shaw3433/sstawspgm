@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    function randomizeNames()
+		{
+			var names = ["Mary","John", "Christene", "Peter", "Joanne", "AhKow", "Valerie"];
+			var i = Math.floor(Math.random() * 10);
+			
+			document.getElementById("dynamic").innerHTML = "";
+			
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';;
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+		}
+     
+    </script>
+  </head>
+  <body>
+    <h2>Enter one of the names in the textbox and click [Randomize Names]</h2>
+    "Mary","John", "Christene", "Peter", "Joanne", "AhKow", "Valerie"<br><br>
+
+    <input type="text" id="predefinedName" placeholder="Enter name here">
+    <button id="Randomize" onclick="randomizeNames()">Randomize Names</button>
+    <div id="dynamic"></div>
+    <!-- <button id="checkNameButton" onclick="checkName()" style="display:none;">Check Name</button> -->
+  </body>
+</html>
