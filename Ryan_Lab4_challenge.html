@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>		  
+	    function upload()
+	    {
+		    var files = document.getElementById('photoupload').files;
+			var file = files[0];
+			var fileName = file.name;
+			alert(fileName);
+			var photoKey = fileName;	
+			s3.upload({
+				Key: photoKey,
+				Body: file,
+				ACL: 'public-read'
+			}, function(err, data) {
+				if (err) {
+				  return alert('There was an error uploading your photo: ', err.message);
+				}
+				alert('Successfully uploaded photo.');
+			});			    
+	    }
+		
+		function male()
+		{
+			var names = ["John","Peter","Zach"];
+			var i = Math.floor(Math.random() * 10);
+			document.getElementById("dynamic").innerHTML = "";
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i++ %3] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i++ %3] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i++ %3] +'</label><br>';
+		}
+		
+		function female()
+		{
+			var names = ["Mary","Christene","Joanne","Valerie"];
+			var i = Math.floor(Math.random() * 10);
+			document.getElementById("dynamic").innerHTML = "";
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i++ %4] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i++ %4] +'</label><br>';
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i++ %4] +'</label><br>';
+		}
+		
+		function names()
+		{
+			var names = ["Mary","John", "Christene", "Peter", "Joanne", "AhKow", "Valerie"];
+			var i = Math.floor(Math.random() * 10);
+			
+			document.getElementById("dynamic").innerHTML = "";
+			
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';;
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+				
+			i = (i+1) % 7;
+			document.getElementById("dynamic").innerHTML += 
+				'<label><input type="checkbox" name="names">'+ names[i] +'</label><br>';
+		}
+    </script>
+  </head>
+  <body>
+	<!--
+	<input type="radio" id="male" name="gender" value="male" onclick="male();">
+	<label for="male">Male</label><br>
+	<input type="radio" id="female" name="gender" value="female" onclick="female();">
+	<label for="female">Female</label><br>
+	-->
+	<div id="dynamic">
+	</div>
+	<script> names(); </script>
+  </body>
+</html>
